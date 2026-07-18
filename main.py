@@ -1,3 +1,5 @@
+import random
+
 # Introduction
 print('Hello and welcome to Password Generator')
 print('Please answer the following to generate a unique password')
@@ -17,12 +19,11 @@ while True:
     except ValueError:
         print('Please enter a number')
 
-
-import random
 random_password=[]
 
+# Upper or lower case
 while True:
-    print('Include uppercase letters? (Y/N)')     # Upper or lower case
+    print('Include uppercase letters? (Y/N)')     
     upper_case = input("> ")
     print('Include lowercase letters? (Y/N)')
     lower_case = input("> ")
@@ -43,12 +44,12 @@ while True:
         random_password.append(random.choice(alphabets_lower))
         break
 
-print('Include numbers? (Y/N)')              # Numbers
+# Numbers and special characters
+print('Include numbers? (Y/N)')
 numbers = input("> ")
-print('Include special characters? (Y/N)')   # Special characters
+print('Include special characters? (Y/N)')
 special_chracters = input("> ")
 
-# Raw password
 if numbers.upper() == "Y" and special_chracters.upper() == "Y":
     password = alphabets + num + s_ch
     random_password.append(random.choice(num))
@@ -59,6 +60,14 @@ elif numbers.upper() == "Y":
 elif special_chracters.upper() == "Y":
     password = alphabets + s_ch
     random_password.append(random.choice(s_ch))
+else:
+    password=alphabets
+
+# Checking for an impossible event
+if password_length<len(random_password):
+    print(f'Password lenght must be atleast {len(random_password)}')
+    quit()
+
 
 # Random password
 i=1
